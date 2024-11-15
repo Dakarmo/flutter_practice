@@ -23,3 +23,18 @@ bool validatePhoneNumber(String phoneNumber) {
   final phoneReg = RegExp(r"^\+[1-9]{1,3}(?:\d{2}){4}$");
   return phoneReg.hasMatch(phoneNumber);
 }
+
+const Color APP_COLOR = Color(0xff5b3bfe);
+
+const int PAGE_LIMIT = 10;
+
+
+enum SortTypes {
+  ASC,
+  DESC
+}
+
+enum GetTypes {
+  FILTER,
+  PAGING
+}
