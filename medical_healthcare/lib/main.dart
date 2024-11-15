@@ -16,4 +16,5 @@ class MyApp extends StatelessWidget {
       home: WelcomeScreen(),
     );
   }
+  // just a test of commit
 }
