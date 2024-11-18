@@ -2,11 +2,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class APIService {
-  final String _urlLocal = 'http://172.18.160.1:8080';
+  final String _urlLocal = 'http://172.31.0.1:8080';
 
   Map<String, String> _headers = {
-    "content-type": "appication/json",
-    "accept": "appication/json",
+    "content-type": "application/json;charset=utf-8",
+    "accept": "application/json",
   };
 
   Future<http.Response> get(String url, Map<String, String> params) async{

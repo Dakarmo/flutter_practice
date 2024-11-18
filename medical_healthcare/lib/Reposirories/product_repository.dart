@@ -37,18 +37,21 @@ class ProductRepository {
   }
 
   Future<Product> addProduct(Product product) async{
-    http.Response response = await _apiService.post("/product/add", product.toJson(product));
+    http.Response response = await _apiService.post("/products/add", product.toJson(product));
 
     dynamic responseJson = jsonDecode(response.body);
+    print(responseJson);
     final jsonData=responseJson["data"];
+    print(jsonData);
     Product savedProduct = Product.fromJson(jsonData);
     return savedProduct;
+
 
 
   }
 
   Future<Product> editProduct(Product product) async{
-    http.Response response = await _apiService.put("/product/edit", product.toJson(product));
+    http.Response response = await _apiService.put("/products/edit", product.toJson(product));
 
     dynamic responseJson = jsonDecode(response.body);
     final jsonData=responseJson["data"];
@@ -59,7 +62,7 @@ class ProductRepository {
   }
 
   Future<dynamic> deleteProduct(Product product) async{
-    http.Response response = await _apiService.delete("/product/delete/${product.id}");
+    http.Response response = await _apiService.delete("/products/delete/${product.id}");
 
     dynamic responseJson = jsonDecode(response.body);
     final jsonMessage = responseJson["message"];

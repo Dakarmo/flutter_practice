@@ -3,7 +3,10 @@ import 'package:medical_heathcare/providers/product_provider.dart';
 import 'package:medical_heathcare/utils/utils.dart';
 import 'package:medical_heathcare/widgets/add_product.dart';
 import 'package:medical_heathcare/widgets/elev_button.dart';
+import 'package:medical_heathcare/widgets/product_container.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_grid/responsive_grid.dart';
+
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
@@ -132,11 +135,46 @@ class _ProductScreenState extends State<ProductScreen> {
 
                       });
                     }
-                )
+                ),
+
               ],
             ),
           ),
+          const SizedBox(height: 30,),
+          Expanded(
+            child: ResponsiveGridList(
+              desiredItemWidth: 200,
+              minSpacing: 20,
+              children: Provider.of<ProductProvider>(context).products.map<Widget>((product) {
+                return GestureDetector(
+                  onTap: (){
+                    Provider.of<ProductProvider>(context, listen: false).productToEdit=product;
+                    _scaffoldkey.currentState!.openEndDrawer();
+                  },
+                  child: ProductContainer(product: product),
 
+                );
+              }).toList()
+              ..add(
+                pagesNum > 1?
+                SizedBox(
+                height: 210,
+                  child: ElevButton(
+                      text: 'Load More',
+                      icon: Icons.add,
+                      color: Colors.grey,
+                      onPressed: (){
+                        Provider.of<ProductProvider>(context, listen: false)
+                            .getProducts(nextPages, searchValue, sortTypes, GetTypes.PAGING);
+                        pagesNum--;
+                        nextPages++;
+                      }
+                  ),
+              
+            ):const SizedBox()
+            ),
+            ),
+          ),
         ],
       )
     );

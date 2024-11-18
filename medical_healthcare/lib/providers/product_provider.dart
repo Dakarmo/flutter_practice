@@ -12,8 +12,8 @@ class ProductProvider extends ChangeNotifier {
 
   getProducts(int page, String? searchValue, SortTypes? sortType, GetTypes getType) async{
     Map<String, dynamic> returnedData = await _productRepository.getProductList(page, searchValue, sortType);
-
-    List<Product> pageProducts = returnedData["product list"];
+// print(returnedData);
+    List<Product> pageProducts = returnedData["products list"];
     pagesNumber = returnedData["pages number"];
     if(getType == GetTypes.PAGING){
       products = products+pageProducts;
@@ -25,6 +25,7 @@ class ProductProvider extends ChangeNotifier {
   }
 
   addProduct(Product product) async {
+    // print('addProduct : $product');
     Product saveProduct = await _productRepository.addProduct(product);
     products.add(saveProduct);
     notifyListeners();

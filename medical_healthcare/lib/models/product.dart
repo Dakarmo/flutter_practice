@@ -3,7 +3,7 @@ class Product {
   String? name;
   String? description;
   String? image;
-  String? price;
+  double? price;
 
   Product({
     required this.id,
@@ -40,8 +40,9 @@ class Product {
 
     return 'Product{'
       'id: $id,'
-      'description: $description'
-      'image:$image'
+      'name: $name,'
+      'description: $description,'
+      'image:$image,'
       'price: $price }';
   }
 
